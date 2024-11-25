@@ -12,3 +12,7 @@ BoxDecoration layoutDecoration() {
 TextStyle navigationTabTextStyle() {
   return TextStyle(color: Colors.black, fontSize: 20);
 }
+
+TextStyle profileTextStyle() {
+  return TextStyle(color: Colors.black, fontSize: 20);
+}

@@ -20,12 +20,12 @@ class navigationBar extends ConsumerWidget {
     return Container(
       decoration: layoutDecoration(),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           logo(),
           navTabs(),
-          Container(),
+          profileTab(),
         ],
       ),
     );
@@ -50,11 +50,49 @@ class navTabs extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        navButtons('HOME', ref),
+        navButtons('Home', ref),
         navButtons('Add Adverts', ref),
         navButtons('Contractors', ref),
         navButtons('Jobs', ref),
       ],
+    );
+  }
+}
+
+class profileTab extends ConsumerWidget {
+  const profileTab({super.key});
+
+  Widget profileIcon() {
+    return Container(
+      height: 50,
+      width: 50,
+      color: Colors.amberAccent,
+    );
+  }
+
+  Widget profileDropdown() {
+    String dropdownValue = options.first;
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_drop_down),
+      elevation: 16,
+      style: profileTextStyle(),
+      onChanged: (String? value) {
+        dropdownValue = value!;
+      },
+      items: options.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Row(
+      children: [profileIcon(), profileDropdown()],
     );
   }
 }

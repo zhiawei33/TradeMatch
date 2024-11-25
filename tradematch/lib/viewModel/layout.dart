@@ -14,7 +14,7 @@ class Layout_viewModel extends ConsumerWidget {
 
     Widget getMainView(String viewName) {
       switch (viewName) {
-        case 'HOME':
+        case 'Home':
           return HomeView();
         case 'Add Adverts':
           return AdvertView();
@@ -23,7 +23,7 @@ class Layout_viewModel extends ConsumerWidget {
         case 'Jobs':
           return SizedBox();
         default:
-          return SizedBox();
+          return HomeView();
       }
     }
 
