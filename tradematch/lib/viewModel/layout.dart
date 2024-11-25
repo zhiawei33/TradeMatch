@@ -41,10 +41,6 @@ class Layout_viewModel extends ConsumerWidget {
             flex: 6,
             child: getMainView(mainView),
           ),
-          Expanded(
-            flex: 1,
-            child: Container(),
-          ),
         ],
       )),
     ));

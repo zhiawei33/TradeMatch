@@ -8,23 +8,38 @@ class AdvertView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-        decoration: layoutDecoration(),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                color: Colors.deepPurple,
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                color: Colors.deepOrangeAccent,
-              ),
-            )
-          ],
-        ));
+    return ListView(
+      children: [
+        Container(
+          width: 500,
+          height: 1000,
+          color: Colors.red,
+        ),
+        Container(
+          width: 500,
+          height: 1000,
+          color: Colors.black,
+        )
+      ],
+    );
+    // Container(
+    //     decoration: layoutDecoration(),
+    //     child: Column(
+    //       children: [
+    //         Expanded(
+    //           flex: 1,
+    //           child: Container(
+    //             color: Colors.deepPurple,
+    //           ),
+    //         ),
+    //         Expanded(
+    //           flex: 1,
+    //           child: Container(
+    //             color: Colors.deepOrangeAccent,
+    //           ),
+    //         )
+    //       ],
+    //     )
+    // );
   }
 }
