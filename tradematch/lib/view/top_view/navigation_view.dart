@@ -9,10 +9,17 @@ class navigationBar extends ConsumerWidget {
 
   Widget logo() {
     return Container(
-      height: 100,
-      width: 100,
-      color: Colors.black,
-    );
+        height: 150,
+        margin: EdgeInsets.only(left: 300, right: 50),
+        child: Row(
+          children: [
+            Icon(Icons.house, size: 70),
+            Text(
+              'TradeMatch.care',
+              style: logoTextStyle(),
+            )
+          ],
+        ));
   }
 
   @override
@@ -20,11 +27,11 @@ class navigationBar extends ConsumerWidget {
     return Container(
       decoration: layoutDecoration(),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           logo(),
           navTabs(),
+          const Spacer(),
           profileTab(),
         ],
       ),
@@ -36,25 +43,28 @@ class navTabs extends ConsumerWidget {
   const navTabs({super.key});
 
   Widget navButtons(String name, ref) {
+    final selected = ref.watch(mainViewProvider);
     return Container(
-        margin: const EdgeInsets.all(10),
-        child: TextButton(
-            onPressed: () {
-              ref.read(mainViewProvider.notifier).state = name;
-            },
-            child: Text(name, style: navigationTabTextStyle())));
+      margin: const EdgeInsets.all(10),
+      child: TextButton(
+        onPressed: () {
+          ref.read(mainViewProvider.notifier).state = name;
+        },
+        child: Text(name,
+            style: selected == name
+                ? navigationSelectedTabTextStyle()
+                : navigationTabTextStyle()),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        navButtons('Home', ref),
-        navButtons('Add Adverts', ref),
-        navButtons('Contractors', ref),
-        navButtons('Jobs', ref),
-      ],
+    return Container(
+      margin: EdgeInsets.only(left: 30),
+      child: Row(
+        children: navigation_tabs.map((tab) => navButtons(tab, ref)).toList(),
+      ),
     );
   }
 }
@@ -64,21 +74,25 @@ class profileTab extends ConsumerWidget {
 
   Widget profileIcon() {
     return Container(
+      margin: EdgeInsets.only(right: 30),
       height: 50,
       width: 50,
-      color: Colors.amberAccent,
+      child: Icon(
+        Icons.person_2,
+        size: 50,
+      ),
     );
   }
 
-  Widget profileDropdown() {
-    String dropdownValue = options.first;
+  Widget profileDropdown(ref) {
+    String dropdownValue = ref.watch(dropdownValueProvider);
     return DropdownButton<String>(
       value: dropdownValue,
       icon: const Icon(Icons.arrow_drop_down),
       elevation: 16,
       style: profileTextStyle(),
       onChanged: (String? value) {
-        dropdownValue = value!;
+        ref.read(dropdownValueProvider.notifier).state = value!;
       },
       items: options.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
@@ -91,8 +105,11 @@ class profileTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [profileIcon(), profileDropdown()],
+    return Container(
+      margin: EdgeInsets.only(right: 50),
+      child: Row(
+        children: [profileIcon(), profileDropdown(ref)],
+      ),
     );
   }
 }

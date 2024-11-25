@@ -22,24 +22,5 @@ class AdvertView extends ConsumerWidget {
         )
       ],
     );
-    // Container(
-    //     decoration: layoutDecoration(),
-    //     child: Column(
-    //       children: [
-    //         Expanded(
-    //           flex: 1,
-    //           child: Container(
-    //             color: Colors.deepPurple,
-    //           ),
-    //         ),
-    //         Expanded(
-    //           flex: 1,
-    //           child: Container(
-    //             color: Colors.deepOrangeAccent,
-    //           ),
-    //         )
-    //       ],
-    //     )
-    // );
   }
 }

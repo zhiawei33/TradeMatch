@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tradematch/utilities/themes.dart';
 import 'package:tradematch/utilities/setup.dart';
 import 'component/home_connect.dart';
+import 'component/home_advert.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -14,9 +15,9 @@ class HomeView extends ConsumerWidget {
         Expanded(
           flex: 1,
           child: Container(
+            decoration: layoutDecoration(),
             margin: const EdgeInsets.only(top: 50),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [ConnectectionHeader(), ConnectionContainer()],
             ),
@@ -25,11 +26,11 @@ class HomeView extends ConsumerWidget {
         Expanded(
           flex: 1,
           child: Container(
+            decoration: AdvertViewDecoration(),
             margin: const EdgeInsets.only(top: 50),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [ConnectectionHeader(), ConnectionContainer()],
+              children: [AdvertHeader(), AdvertPicture()],
             ),
           ),
         ),
